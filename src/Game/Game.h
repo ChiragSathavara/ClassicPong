@@ -27,6 +27,8 @@ public:
 
    glm::vec2 BallPos = { 800,550 };
 
+   glm::vec2 EnemyPos = {1857,525};
+
    float deltatime;
 
    Uint32 MILLI_SEC_PREVIOUS_FRAME;
@@ -35,6 +37,7 @@ private:
 
 	void PlayerMovement();
 	void BallMovement();
+	void EnemyMovement();
 	void BallHitsPaddle();
 
 	int thickness = 15;
@@ -45,6 +48,8 @@ private:
 	SDL_Renderer* myRen;
 	
 	SDL_Rect PlayerPaddleRect;
+
+	SDL_Rect EnemyPaddleRect;
 	
 	SDL_Rect BallRect;
 
@@ -55,6 +60,8 @@ private:
 	SDL_Rect LeftWallRect;
 	SDL_Rect RightWallRect;
 	
+	
+
 	bool bisMovingUp;
 	bool bisMovingDown;
 	
@@ -63,10 +70,12 @@ private:
 
 	bool PlayerHitBall;
 
-	int speed = 400;
+	int speed = 800;
 	
 
-	float BallVelX = 400.0f;
-	float BallVelY = 400.0f;
+	float BallVelX = 600.0f;
+	float BallVelY = 600.0f;
+
+	float EnemyVelY = 500.0f;
 };
 

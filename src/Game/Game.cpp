@@ -51,6 +51,8 @@ void Game::InitGame()
 	RightWallRect = { WindWidth - thickness,0,thickness,WindHeight };
 
 	PlayerPaddleRect = { static_cast<int>(PlayerPos.x),static_cast<int>(PlayerPos.y),thickness,80};
+
+	EnemyPaddleRect = { static_cast<int>(EnemyPos.x),static_cast<int>(EnemyPos.y),thickness,80 };
 	
 	BallRect = { static_cast<int>(BallPos.x - thickness/2),static_cast<int>(BallPos.y - thickness/2),thickness,thickness };
 
@@ -114,6 +116,7 @@ void Game::Update()
 	PlayerMovement();
 	BallMovement();
 	BallHitsPaddle();
+	EnemyMovement();
 }
 
 void Game::RunGameLoop()
@@ -135,6 +138,9 @@ void Game::Render()
 	//PlayerPaddleRect
 	SDL_RenderFillRect(myRen, &PlayerPaddleRect);
 	
+	//EnemyPaddleRect
+	SDL_RenderFillRect(myRen, &EnemyPaddleRect);
+
 	//BallRect
 	SDL_RenderFillRect(myRen, &BallRect);
 
@@ -152,6 +158,8 @@ void Game::Render()
 
 	//RightWallRect
 	SDL_RenderFillRect(myRen, &RightWallRect);
+
+	
 
 	SDL_RenderPresent(myRen);
 }
@@ -220,10 +228,33 @@ void Game::BallMovement()
 	BallRect.y = BallPos.y;
 }
 
+void Game::EnemyMovement()
+{
+	
+	EnemyPos.y += EnemyVelY * deltatime;
+
+	if (EnemyPos.y < 0)
+	{
+		EnemyPos.y = 0;
+		EnemyVelY = -EnemyVelY;
+	}
+
+	if (EnemyPos.y + 30 +  thickness > WindHeight)
+	{
+		EnemyPos.y = WindHeight - 30 - thickness;
+		EnemyVelY = -EnemyVelY;
+	}
+
+	EnemyPaddleRect.y = EnemyPos.y;
+}
+
 void Game::BallHitsPaddle()
 {
-	if (SDL_HasIntersection(&PlayerPaddleRect, &BallRect) == true)
+	if (SDL_HasIntersection(&PlayerPaddleRect, &BallRect) == true || SDL_HasIntersection(&EnemyPaddleRect, &BallRect) == true)
 	{
 		BallVelX = -BallVelX;
+		BallVelX += 5;
+		BallVelY += 5;
 	}
+
 }
