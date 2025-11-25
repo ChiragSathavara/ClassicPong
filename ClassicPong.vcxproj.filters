@@ -1626,4 +1626,14 @@
     <Library Include="libs\SDL2\lib\x64\SDL2main.lib" />
     <Library Include="libs\SDL2\lib\x64\SDL2test.lib" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="font\Alan_Sans\static\AlanSans-Black.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-Bold.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-ExtraBold.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-Light.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-Medium.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-Regular.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-SemiBold.ttf" />
+    <Font Include="font\Alan_Sans\AlanSans-VariableFont_wght.ttf" />
+  </ItemGroup>
 </Project>

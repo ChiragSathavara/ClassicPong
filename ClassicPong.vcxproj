@@ -71,19 +71,19 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)libs\SDL2\include;$(SolutionDir)libs\glm;$(SolutionDir)libs;$(SolutionDir)src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs\SDL2\include;$(SolutionDir)libs\glm;$(SolutionDir)libs;$(SolutionDir)src;$(SolutionDir)font;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)libs\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)libs\SDL2\include;$(SolutionDir)libs\glm;$(SolutionDir)libs;$(SolutionDir)src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs\SDL2\include;$(SolutionDir)libs\glm;$(SolutionDir)libs;$(SolutionDir)src;$(SolutionDir)font;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)libs\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)libs\SDL2\include;$(SolutionDir)libs\glm;$(SolutionDir)libs;$(SolutionDir)src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs\SDL2\include;$(SolutionDir)libs\glm;$(SolutionDir)libs;$(SolutionDir)src;$(SolutionDir)font;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)libs\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)libs\SDL2\include;$(SolutionDir)libs\glm;$(SolutionDir)libs;$(SolutionDir)src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)libs\SDL2\include;$(SolutionDir)libs\glm;$(SolutionDir)libs;$(SolutionDir)src;$(SolutionDir)font;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)libs\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -703,6 +703,16 @@
     <Library Include="libs\SDL2\lib\x64\SDL2_image.lib" />
     <Library Include="libs\SDL2\lib\x64\SDL2_mixer.lib" />
     <Library Include="libs\SDL2\lib\x64\SDL2_ttf.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="font\Alan_Sans\AlanSans-VariableFont_wght.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-Black.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-Bold.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-ExtraBold.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-Light.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-Medium.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-Regular.ttf" />
+    <Font Include="font\Alan_Sans\static\AlanSans-SemiBold.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

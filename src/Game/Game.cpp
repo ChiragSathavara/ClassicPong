@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <iostream>
+#include <string>
 
 Game::Game() : myWind(nullptr), myRen(nullptr)
 {
@@ -24,7 +25,14 @@ void Game::InitGame()
 	{
 		return;
 	}
-
+	if (TTF_Init() == -1)
+	{
+		printf("TTF isnt Initialize!");
+	}
+	else
+	{
+		printf("TTF is Initialize!");
+	}
 	SDL_DisplayMode displaymode;
 	SDL_GetCurrentDisplayMode(0, &displaymode);
 	WindHeight = displaymode.h;
@@ -42,6 +50,14 @@ void Game::InitGame()
 		return;
 	}
 
+	myFont = TTF_OpenFont("./font/Alan_Sans/static/AlanSans-Regular.ttf", 50);
+
+	if (myFont == nullptr)
+	{
+		std::cout << "FONT NOT LOAD" << std::endl;
+		return;
+	}
+
 	TopWallRect = { 0,0,WindWidth,thickness };
 
 	BottomWallRect = { 0,WindHeight - thickness,WindWidth,thickness };
@@ -55,6 +71,8 @@ void Game::InitGame()
 	EnemyPaddleRect = { static_cast<int>(EnemyPos.x),static_cast<int>(EnemyPos.y),thickness,80 };
 	
 	BallRect = { static_cast<int>(BallPos.x - thickness/2),static_cast<int>(BallPos.y - thickness/2),thickness,thickness };
+
+	ScoreFont = { 920,20,50,100 };
 
 	bisRunning = true;
 
@@ -117,6 +135,7 @@ void Game::Update()
 	BallMovement();
 	BallHitsPaddle();
 	EnemyMovement();
+	LoadFontOnScreen();
 }
 
 void Game::RunGameLoop()
@@ -144,6 +163,8 @@ void Game::Render()
 	//BallRect
 	SDL_RenderFillRect(myRen, &BallRect);
 
+	SDL_RenderCopy(myRen, myFontTexture, NULL, &ScoreFont);
+
 	//Changing Wall Color
 	SDL_SetRenderDrawColor(myRen, 25, 50, 89, 255);
 	
@@ -158,8 +179,6 @@ void Game::Render()
 
 	//RightWallRect
 	SDL_RenderFillRect(myRen, &RightWallRect);
-
-	
 
 	SDL_RenderPresent(myRen);
 }
@@ -211,6 +230,7 @@ void Game::BallMovement()
 	{
 		BallPos.x = WindWidth - thickness;
 		BallVelX = -BallVelX;
+		Score += 1;
 	}
 
 	if (BallPos.y < 0)
@@ -230,7 +250,6 @@ void Game::BallMovement()
 
 void Game::EnemyMovement()
 {
-	
 	EnemyPos.y += EnemyVelY * deltatime;
 
 	if (EnemyPos.y < 0)
@@ -257,4 +276,15 @@ void Game::BallHitsPaddle()
 		BallVelY += 5;
 	}
 
+}
+
+void Game::LoadFontOnScreen()
+{
+	std::string scoreText = std::to_string(Score);
+
+	myFontSurface = TTF_RenderText_Solid(myFont, scoreText.c_str(), { 255,255,255 });
+
+	myFontTexture = SDL_CreateTextureFromSurface(myRen, myFontSurface);
+
+	SDL_FreeSurface(myFontSurface);
 }
