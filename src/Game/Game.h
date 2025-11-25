@@ -65,8 +65,6 @@ private:
 	bool bisMovingUp;
 	bool bisMovingDown;
 	
-	
-
 
 	bool PlayerHitBall;
 
