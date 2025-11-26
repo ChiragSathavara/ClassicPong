@@ -93,7 +93,7 @@ private:
 	bool PlayerHitBall;
 
 	int speed = 800;
-	int Lives = 1;
+	int Lives = 3;
 
 	float BallVelX = 600.0f;
 	float BallVelY = 600.0f;
