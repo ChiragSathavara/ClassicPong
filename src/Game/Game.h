@@ -3,7 +3,7 @@
 #include "glm.hpp"
 #include "SDL_ttf.h"
 
-const int FPS = 60;
+const int FPS = 120;
 const int MILLI_SEC_FRAME = FPS / 1000;
 
 class Game
@@ -43,17 +43,29 @@ private:
 	
 	void LoadFontOnScreen();
 
-	int thickness = 15;
+	void GameOverTitle();
 
+	int thickness = 15;
+	int length = 100;
 	//Window
 
 	SDL_Window* myWind;
 	SDL_Renderer* myRen;
 
 	TTF_Font* myFont;
+	TTF_Font* LivesFont;
+	
+	TTF_Font* GameOverFont;
+	SDL_Surface* GameOverSurface;
+	SDL_Texture* GameOverTexture;
 
 	SDL_Surface* myFontSurface;
+	
 	SDL_Texture* myFontTexture;
+
+	SDL_Surface* myLivesSurface;
+	
+	SDL_Texture* myLivesTexture;
 
 	SDL_Rect PlayerPaddleRect;
 
@@ -61,7 +73,10 @@ private:
 	
 	SDL_Rect BallRect;
 
+	SDL_Rect GameOverRect;
+
 	SDL_Rect ScoreFont;
+	SDL_Rect FontLivesRect;
 
 	//Walls
 
@@ -69,7 +84,6 @@ private:
 	SDL_Rect BottomWallRect;
 	SDL_Rect LeftWallRect;
 	SDL_Rect RightWallRect;
-	
 	
 
 	bool bisMovingUp;
@@ -79,11 +93,11 @@ private:
 	bool PlayerHitBall;
 
 	int speed = 800;
-	int Score = 0;
+	int Lives = 1;
 
 	float BallVelX = 600.0f;
 	float BallVelY = 600.0f;
 
-	float EnemyVelY = 500.0f;
+	float EnemyVelY = 550.0f;
 };
 
